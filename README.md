@@ -1,11 +1,81 @@
-<div align="center">
+# نظام الهوية الرقمية السودانية (Sudan Digital ID System)
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+نظام ويب متطور لإصدار وإدارة الهوية الرقمية السودانية باستخدام تقنيات الذكاء الاصطناعي (Google Gemini) للتحقق من هوية المستخدمين ومطابقة البيانات الحيوية.
 
-  <h1>Built with AI Studio</h2>
+## 🌟 مميزات النظام
+- **تحقق ذكي**: استخدام AI لمطابقة الصورة الشخصية مع صورة الجواز.
+- **توليد الهوية**: إنشاء بطاقة هوية رقمية تفاعلية تحاكي الهوية السودانية الحقيقية.
+- **لوحة تحكم**: لوحة خاصة للمسؤولين لمتابعة عمليات التحقق.
+- **تصدير PDF**: إمكانية طباعة أو حفظ الهوية كملف PDF.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🛠️ المتطلبات المسبقة
+قبل البدء، تأكد من تثبيت ما يلي على جهازك:
+- **Node.js**: (الإصدار 18 أو أحدث).
+- **مدير الحزم**: (npm أو yarn).
+- **مفتاح API**: مفتاح خاص بـ Google Gemini API.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## 🚀 خطوات التشغيل المحلي
 
-</div>
+### 1. إنشاء مشروع Vite
+يفضل إنشاء بيئة عمل جديدة باستخدام Vite مع React و TypeScript:
+
+```bash
+npm create vite@latest sudan-id-system -- --template react-ts
+cd sudan-id-system
+```
+
+### 2. تثبيت المكتبات المطلوبة
+قم بتثبيت المكتبات التي يعتمد عليها المشروع:
+
+```bash
+npm install @google/genai lucide-react
+```
+
+### 3. نقل الملفات
+قم بنسخ ملفات الكود المصدري إلى مجلد `src` في مشروعك الجديد:
+- المجلدات: `components`, `services`
+- الملفات: `App.tsx`, `types.ts`, `index.css` (إن وجد)
+
+### 4. إعداد مفتاح الذكاء الاصطناعي (API Key)
+بما أن الكود يستخدم `process.env.API_KEY`، تحتاج إلى تكوين Vite لتعريف هذا المتغير.
+
+1. أنشئ ملف `.env` في المجلد الرئيسي للمشروع وأضف المفتاح:
+   ```env
+   API_KEY=AIzaSy... (مفتاحك هنا)
+   ```
+
+2. قم بتعديل ملف `vite.config.ts` ليقرأ المتغير:
+   ```typescript
+   import { defineConfig, loadEnv } from 'vite'
+   import react from '@vitejs/plugin-react'
+
+   export default defineConfig(({ mode }) => {
+     const env = loadEnv(mode, process.cwd(), '');
+     return {
+       plugins: [react()],
+       define: {
+         'process.env.API_KEY': JSON.stringify(env.API_KEY)
+       }
+     }
+   })
+   ```
+
+### 5. تشغيل المشروع
+ابدأ الخادم المحلي:
+
+```bash
+npm run dev
+```
+
+افتح المتصفح على الرابط: `http://localhost:5173`
+
+## 🎨 ملاحظات التصميم والطباعة
+- يعتمد المشروع على **Tailwind CSS**. تأكد من تضمينه في مشروعك (اتبع دليل تثبيت Tailwind مع Vite).
+- عند الطباعة أو حفظ الهوية كـ PDF، تأكد من تفعيل خيار **"Background Graphics"** في إعدادات الطباعة بالمتصفح لتظهر الألوان والخلفيات بشكل صحيح.
+
+## 🔒 لوحة المسؤول
+- للدخول إلى لوحة التحكم، اضغط على أيقونة القفل في أعلى يسار الصفحة.
+- كلمة المرور الافتراضية: `123123123`
+
+---
+تم التصميم والتطوير بواسطة: **ريم بابكر**

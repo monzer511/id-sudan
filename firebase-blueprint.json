@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "VerificationLog": {
+      "title": "Verification Log",
+      "description": "Stores identity verification attempts and results",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "nationalId": { "type": "string" },
+        "fullName": { "type": "string" },
+        "status": { "type": "string", "enum": ["APPROVED", "REJECTED"] },
+        "confidence": { "type": "number" },
+        "userData": {
+          "type": "object",
+          "properties": {
+            "firstName": { "type": "string" },
+            "secondName": { "type": "string" },
+            "thirdName": { "type": "string" },
+            "fourthName": { "type": "string" },
+            "nationalId": { "type": "string" },
+            "birthDate": { "type": "string" },
+            "birthPlace": { "type": "string" },
+            "bloodType": { "type": "string" },
+            "jobTitle": { "type": "string" },
+            "address": { "type": "string" }
+          }
+        },
+        "photoUrl": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "nationalId", "fullName", "status", "confidence", "userData"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user roles and metadata",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/logs/{logId}": {
+      "schema": "VerificationLog",
+      "description": "Collection of verification logs"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and roles"
+    }
+  }
+}

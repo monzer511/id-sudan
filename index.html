@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام الهوية الرقمية السودانية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Cairo', 'sans-serif'],
+            },
+            colors: {
+              sudan: {
+                red: '#D21034',
+                white: '#FFFFFF',
+                black: '#000000',
+                green: '#007229',
+                gold: '#C5A059',
+              }
+            },
+            backgroundImage: {
+              'guilloche': "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 114, 41, 0.03) 10px, rgba(0, 114, 41, 0.03) 20px)",
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      @media print {
+        @page { 
+          size: A4; 
+          margin: 10mm;
+        }
+        body { 
+          margin: 0; 
+          padding: 0; 
+          background-color: white !important;
+          -webkit-print-color-adjust: exact !important; 
+          print-color-adjust: exact !important; 
+        }
+        
+        .no-print { display: none !important; }
+        .print-only { display: block !important; }
+        
+        /* Ensure gradients and backgrounds print */
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          color-adjust: exact !important;
+        }
+
+        #root {
+          width: 100%;
+          min-height: 100vh;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
